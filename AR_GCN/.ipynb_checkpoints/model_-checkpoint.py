@@ -5,14 +5,14 @@ from AR_GCN.layers_ import MLP, GCNLayer
 
 
 class Embedding(nn.Module):
-    def __init__(self, d_model, d_gate, max_k=0, rank_emb=False):
+    def __init__(self, d_model, max_k=0, rank_emb=False):
         super().__init__()
         scale = d_model ** 0.5
         k = max(1, max_k) if rank_emb else 1
         self.cand_emb = nn.Parameter(torch.randn(1, k, d_model) / scale)
         self.dest_curr_emb = nn.Parameter(torch.randn(1, 2, d_model) / scale)
         self.demand_emb = nn.Linear(1, d_model)
-        self.edge_emb = nn.Linear(1, d_gate)
+        self.edge_emb = nn.Linear(1, d_model)
 
     def forward(self, edges, demands=None):
         """
@@ -32,9 +32,9 @@ class Embedding(nn.Module):
 class TSP_Net(nn.Module):
     def __init__(self, args):
         super().__init__()
-        self.embedding = Embedding(args.d_model, args.d_gate, args.max_k, args.rank_emb)
+        self.embedding = Embedding(args.d_model, args.max_k, args.rank_emb)
         self.layers = nn.ModuleList([
-            GCNLayer(args.d_model, args.d_gate, args.aggregation) for i in range(args.n_encoders)
+            GCNLayer(args.d_model, args.aggregation) for i in range(args.n_encoders)
         ])
         self.projection = MLP([2 * args.d_model, args.d_model, 1])
         self.criterion = nn.CrossEntropyLoss()
@@ -81,9 +81,9 @@ class TSP_Net(nn.Module):
 class CVRP_Net(nn.Module):
     def __init__(self, args):
         super().__init__()
-        self.embedding = Embedding(args.d_model, args.d_gate, args.max_k, args.rank_emb)
+        self.embedding = Embedding(args.d_model, args.max_k, args.rank_emb)
         self.layers = nn.ModuleList([
-            GCNLayer(args.d_model, args.d_gate, args.aggregation) for i in range(args.n_encoders)
+            GCNLayer(args.d_model, args.aggregation) for i in range(args.n_encoders)
         ])
         self.projection = MLP([2 * args.d_model, args.d_model, 2])
         self.criterion = nn.CrossEntropyLoss()

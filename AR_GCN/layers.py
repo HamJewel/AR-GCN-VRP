@@ -27,11 +27,11 @@ class ActNorm(nn.Module):
 
         
 class NodeConv(nn.Module):
-    def __init__(self, d_model, d_gate, aggregation):
+    def __init__(self, d_model, aggregation):
         super().__init__()
         self.W1 = nn.Linear(d_model, d_model)
         self.W2 = nn.Linear(d_model, d_model)
-        self.W3 = nn.Linear(d_gate, d_model)
+        self.W3 = nn.Linear(d_model, d_model)
         self.aggregation = aggregation
 
     def forward(self, x1, x2, e):
@@ -53,11 +53,11 @@ class NodeConv(nn.Module):
 
 
 class EdgeConv(nn.Module):
-    def __init__(self, d_model, d_gate):
+    def __init__(self, d_model):
         super().__init__()
-        self.W1 = nn.Linear(d_gate, d_gate)
-        self.W2 = nn.Linear(d_model, d_gate)
-        self.W3 = nn.Linear(d_model, d_gate)
+        self.W1 = nn.Linear(d_model, d_model)
+        self.W2 = nn.Linear(d_model, d_model)
+        self.W3 = nn.Linear(d_model, d_model)
 
     def forward(self, x1, x2, e):
         """
@@ -72,13 +72,13 @@ class EdgeConv(nn.Module):
 
 
 class GCNLayer(nn.Module):
-    def __init__(self, d_model, d_gate, aggregation):
+    def __init__(self, d_model, aggregation):
         super().__init__()
-        self.node_conv = NodeConv(d_model, d_gate, aggregation)
-        self.edge_conv = EdgeConv(d_model, d_gate)
+        self.node_conv = NodeConv(d_model, aggregation)
+        self.edge_conv = EdgeConv(d_model)
         self.node_norm1 = ActNorm(d_model)
         self.node_norm2 = ActNorm(d_model)
-        self.edge_norm = ActNorm(d_gate)
+        self.edge_norm = ActNorm(d_model)
 
     def forward(self, x1, x2, e):
         """
