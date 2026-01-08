@@ -12,11 +12,11 @@ class Tester:
         self.model = model
         self._rollout_batch = eval(f'self._rollout_{args.problem}')
 
-    def _rollout_CVRP(self, batch):
+    def _rollout_CVRP(self, batch, n_rollout):
         edges, demands = batch['edges'].cuda(), batch['demands'].cuda()
         device = edges.device
         batch_size, n_nodes = edges.shape[:2]
-        n_rolls = min(self.args.max_k if self.args.max_k > 0 else n_nodes - 1, self.args.n_rollout)
+        n_rolls = min(self.args.max_k if self.args.max_k > 0 else n_nodes - 1, n_rollout)
         total_size = batch_size * n_rolls
         rng1 = torch.arange(batch_size, device=device)
         rng2 = torch.arange(total_size, device=device)
@@ -79,13 +79,13 @@ class Tester:
         idx = pred_lens.argmin(dim=1)
         return pred_lens[rng1, idx], pred_tours[rng1, idx]
 
-    def _rollout_TSP(self, batch):
+    def _rollout_TSP(self, batch, n_rollout):
         all_logits = [[] for _ in range(len(self.model.layers))]
         all_scores = [[] for _ in range(len(self.model.layers))]
         edges = batch['edges'].cuda()
         device = edges.device
         batch_size, n_nodes = edges.shape[:2]
-        n_rolls = min(n_nodes, self.args.n_rollout)
+        n_rolls = min(n_nodes, n_rollout)
         total_size = batch_size * n_rolls
         edges = edges.repeat_interleave(n_rolls, dim=0)
         rng1 = torch.arange(batch_size, device=device)
@@ -148,13 +148,13 @@ class Tester:
         return pred_lens[rng1, idx], pred_tours[rng1, idx]
 
     @torch.no_grad()
-    def test(self, data_loader):
+    def test(self, data_loader, n_rollout):
         all_pred_lens, all_opt_lens, all_opt_gaps, all_times = [], [], [], []
 
         for bid, batch in tqdm(enumerate(data_loader), desc='Testing'):
             opt_lens = batch['lengths'].cuda()
             start_time = time()
-            pred_lens, pred_tours = self._rollout_batch(batch)
+            pred_lens, pred_tours = self._rollout_batch(batch, n_rollout)
             end_time = time()
             # for tour in pred_tours:
             #     tour = flatten_cvrp_tour(tour)

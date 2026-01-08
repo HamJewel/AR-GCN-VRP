@@ -68,7 +68,7 @@ if args.is_lib:
     dataset = Dataset(args.data_dirs[0])
     data_size = len(dataset)
     data_loader = DataLoader(dataset, batch_size=1, num_workers=args.threads)
-    pred_lens, opt_lens, opt_gaps, times = tester.test(data_loader)
+    pred_lens, opt_lens, opt_gaps, times = tester.test(data_loader, args.n_rollouts[0])
     for i in range(data_size):
         print(f'=======[{dataset.instances[i]}]=======')
         print(f'Pred Len:\t{pred_lens[i]:.4f}')
