@@ -42,7 +42,7 @@ def node_to_edge(nodes):
 def min_max_clamp(edges, zero=True):
     max_others = edges[..., 1:].amax(dim=2)  # 不包含起点的最长边
     edges[..., 0] = torch.min(edges[..., 0], max_others)
-    edges[:, 0] = 0.0
+    # edges[:, 0] = 0.0
     maxi = edges.amax(dim=[1, 2], keepdim=True)
     mini = 0 if zero else edges.amin(dim=[1, 2], keepdim=True)
     edges = (edges - mini) / (maxi - mini + 1e-10)

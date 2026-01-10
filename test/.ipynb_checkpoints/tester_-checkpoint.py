@@ -132,7 +132,7 @@ class Tester:
         ax = sns.heatmap(all_scores, 
                          cmap='viridis', 
                          xticklabels=20,
-                         vmin=0.0, vmax=1.0,
+                         # vmin=0.0, vmax=1.0,
                          yticklabels=y_labels,  # 使用带 std 的标签
                          cbar_kws={'label': 'Gate Activation', 'pad': 0.02})
         plt.title('All Gates Heatmap (6 Layers x 128 units)')
