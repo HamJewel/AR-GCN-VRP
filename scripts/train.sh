@@ -61,4 +61,4 @@ python ./train/main.py \
 #     --output_dir ./output \
 #     --log_steps 1
 
-/usr/bin/shutdown
+# /usr/bin/shutdown

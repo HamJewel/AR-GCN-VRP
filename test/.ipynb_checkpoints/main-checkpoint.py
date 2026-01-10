@@ -42,8 +42,6 @@ if args.cfg_path and os.path.exists(args.cfg_path):
         if not getattr(args, key, None):
             setattr(args, key, value)
 
-os.makedirs(args.output_dir, exist_ok=True)
-
 Dataset = {  # (problem, symmetric, is_lib)
     ('TSP', True, False): SVRPSet,
     ('TSP', False, False): AVRPSet,
@@ -61,6 +59,7 @@ model.eval()
 set_seed(args.seed)
 tester = Tester(args, model)
 
+os.makedirs(args.output_dir, exist_ok=True)
 sys.stderr = sys.stdout = Logger(f'{args.output_dir}/logs_test.txt', 'w' if args.rewrite else 'a')
 pprint(vars(args))
 

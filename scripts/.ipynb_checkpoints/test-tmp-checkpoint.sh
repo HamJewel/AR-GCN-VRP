@@ -47,7 +47,7 @@ DISTRIBUTION=tmat
 # done
 
 DISTRIBUTIONS=(uniform clustered explosion implosion)
-MODEL_PATHS=(./output/STSP-128-128-6-50-3-mean-woClampReset)
+MODEL_PATHS=(./output/STSP-128-128-6-50-3-mean-woReset)
 for MODEL_PATH in "${MODEL_PATHS[@]}"; do
     for DISTRIBUTION in "${DISTRIBUTIONS[@]}"; do
         python ./test/main.py \
