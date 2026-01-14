@@ -54,7 +54,7 @@ class Tester:
 
             k_nodes = min(self.args.max_k, n_nodes - step) if self.args.max_k > 0 else n_nodes - step
             masks_demand = (d_norm > remains_new.unsqueeze(1))
-            indices = get_curr_knn(k_nodes, edges, curr_ids, masks, sorted=self.args.rank_emb)
+            indices = get_curr_knn(k_nodes, edges, curr_ids, masks, None, sorted=self.args.rank_emb)
             indices = torch.cat([dest_ids[:, None], curr_ids[:, None], indices], dim=1)
             d_curr = get_curr_demand(d_norm, remains_new, indices)
 
