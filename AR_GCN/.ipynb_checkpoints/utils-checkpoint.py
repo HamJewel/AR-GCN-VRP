@@ -89,7 +89,7 @@ def flatten_cvrp_tour(tour):
         torch.tensor(tour_flatten, dtype=tour.dtype, device=tour.device)
 
 
-def is_valid_tour(tour, demands=None, problem='TSP') -> bool:
+def is_valid_tour(tour, capacity=None, demands=None, problem='TSP') -> bool:
     """
     :param tour: Flatten tour of 1-dimension
     """
@@ -101,10 +101,10 @@ def is_valid_tour(tour, demands=None, problem='TSP') -> bool:
         return len(tour) == len(uniques) + 1
 
     demands = torch.as_tensor(demands)
-    remain = demands[0]
+    remain = capacity
     for x in tour[1:]:
         if x == 0:
-            remain = demands[0]
+            remain = capacity
             continue
         remain = remain - demands[x]
         if remain < 0:

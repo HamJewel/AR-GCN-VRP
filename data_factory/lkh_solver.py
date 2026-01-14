@@ -138,8 +138,6 @@ def solve(idx, datas, demands):
 
     runtime = end_time - start_time
     tour, length = read_solution(solution_file, log_file)
-    # if args.problem == 'CVRP' and not is_valid_tour(flatten_cvrp_tour(tour), demands, 'CVRP'):
-    #     raise ValueError(f'Invalid tour!')
     if not args.keep_output:
         for file in [solution_file, problem_file, param_file, log_file]:
             os.remove(file)

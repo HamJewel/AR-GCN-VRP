@@ -121,10 +121,6 @@ class Tester:
             start_time = time()
             pred_lens, pred_tours = self._rollout_batch(batch, n_rollout)
             end_time = time()
-            # for tour in pred_tours:
-            #     tour = flatten_cvrp_tour(tour)
-            #     if not is_valid_tour(tour, batch['demands'][0].cuda(), self.args.problem):
-            #         raise ValueError(f'Invalid Tour of {self.args.problem}!')
             opt_gaps = get_gap(opt_lens, pred_lens)
 
             all_pred_lens.append(pred_lens)
