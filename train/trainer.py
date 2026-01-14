@@ -35,10 +35,9 @@ class Trainer:
             curr_ids = torch.where(depot_masks, dest_ids, curr_ids)
 
             remains = torch.where(depot_masks, 1.0, remains - d_norm[rng, curr_ids])
-            masks_demand = (d_norm > remains.unsqueeze(1))
-
             k_nodes = min(self.args.max_k, n_nodes - step) if self.args.max_k > 0 else n_nodes - step
-            indices = get_curr_knn(k_nodes, edges, curr_ids, masks, masks_demand, sorted=self.args.rank_emb)
+            # masks_demand = (d_norm > remains.unsqueeze(1))
+            indices = get_curr_knn(k_nodes, edges, curr_ids, masks, sorted=self.args.rank_emb)
             indices = torch.cat([dest_ids[:, None], curr_ids[:, None], indices], dim=1)
 
             e_curr = edges[rng[:, None, None], indices[:, :, None], indices[:, None, :]]
