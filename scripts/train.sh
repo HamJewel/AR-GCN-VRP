@@ -4,12 +4,12 @@ python ./train/main.py \
     --d_model 128 \
     --d_gate 128 \
     --n_encoders 6 \
-    --max_k 100 \
+    --max_k 50 \
     --n_epoch 3 \
     --learning_rate 5e-4 \
     --data_dir ./dataset/SVRP_train/uniform/100 \
     --data_size 200000 \
-    --batch_size 100 \
+    --batch_size 200 \
     --output_dir ./output \
     --log_steps 1 \
     --symmetric \
