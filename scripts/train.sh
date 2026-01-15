@@ -12,8 +12,7 @@ python ./train/main.py \
     --batch_size 200 \
     --output_dir ./output \
     --log_steps 1 \
-    --symmetric \
-    --save_name test
+    --symmetric
 
 # python ./train/main.py \
 #     --problem TSP \
@@ -62,4 +61,4 @@ python ./train/main.py \
 #     --output_dir ./output \
 #     --log_steps 1
 
-# /usr/bin/shutdown
+/usr/bin/shutdown
