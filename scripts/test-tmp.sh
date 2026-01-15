@@ -46,7 +46,7 @@ DISTRIBUTION=tmat
 #         --cfg_path ${MODEL_PATH}/configs.json
 # done
 
-DISTRIBUTIONS=(clustered explosion implosion)
+DISTRIBUTIONS=(uniform clustered explosion implosion)
 # MODEL_PATHS=(./output/STSP-128-128-6-50-3-mean-woReset)
 # for MODEL_PATH in "${MODEL_PATHS[@]}"; do
 #     for DISTRIBUTION in "${DISTRIBUTIONS[@]}"; do
@@ -71,7 +71,7 @@ DISTRIBUTIONS=(clustered explosion implosion)
 #         --is_lib
 # done
 
-MODEL_PATHS=(./output/SCVRP-128-128-6-100-3-mean)
+MODEL_PATHS=(./output/STSP-128-128-6-100-3-mean)
 for MODEL_PATH in "${MODEL_PATHS[@]}"; do
     for DISTRIBUTION in "${DISTRIBUTIONS[@]}"; do
         python ./test/main.py \
@@ -85,7 +85,7 @@ for MODEL_PATH in "${MODEL_PATHS[@]}"; do
     done
     
     python ./test/main.py \
-        --data_dirs ./dataset/SCVRPLIB \
+        --data_dirs ./dataset/STSPLIB \
         --data_sizes -1 \
         --batch_sizes 1 \
         --n_rollouts 8 \
