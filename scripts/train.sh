@@ -12,7 +12,8 @@ python ./train/main.py \
     --batch_size 100 \
     --output_dir ./output \
     --log_steps 1 \
-    --symmetric
+    --symmetric \
+    --save_name test
 
 # python ./train/main.py \
 #     --problem TSP \
