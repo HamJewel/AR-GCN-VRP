@@ -2,10 +2,10 @@ EPOCH=3
 DISTRIBUTION=tmat
 MODEL_PATH=./output/SCVRP-128-128-6-100-3-mean
 python ./test/main.py \
-    --data_dirs dataset/SVRP_test/uniform/100 dataset/SVRP_test/uniform/1000 \
-    --data_sizes 5 5 \
-    --batch_sizes 1 1 \
-    --n_rollouts 8 8 \
+    --data_dirs dataset/SVRP_test/uniform/1000 \
+    --data_sizes 1 \
+    --batch_sizes 1 \
+    --n_rollouts 1 \
     --max_k 0 \
     --output_dir ${MODEL_PATH} \
     --ckpt_path ${MODEL_PATH}/ckpts/steps-6000.pth \

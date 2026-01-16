@@ -40,7 +40,7 @@ if args.cfg_path and os.path.exists(args.cfg_path):
         cfg = json.load(f)
     for key, value in cfg.items():
         val = getattr(args, key, None)
-        if not val or (key == 'max_k' and val is not None):
+        if not val and key != 'max_k':
             setattr(args, key, value)
 
 Dataset = {  # (problem, symmetric, is_lib)
