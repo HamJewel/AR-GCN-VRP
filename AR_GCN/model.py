@@ -119,8 +119,8 @@ class CVRP_Net(nn.Module):
         logits[:, :2] = -torch.inf
         matches = (indices == labels[:, :1])  # (b, n)
         targets = matches.int().argmax(dim=1)  # (b)
-        masks = (targets == 0)
         targets = 2 * targets + labels[:, 1]  # (b)
+        masks = ~matches.any(dim=1)
         targets[masks] = -100
         loss = self.criterion(logits.flatten(1), targets)
         return loss

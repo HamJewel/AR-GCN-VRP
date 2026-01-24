@@ -4,14 +4,15 @@ python ./train/main.py \
     --d_model 128 \
     --d_gate 128 \
     --n_encoders 6 \
-    --max_k 50 \
+    --max_k 100 \
     --n_epoch 3 \
     --learning_rate 5e-4 \
     --data_dir ./dataset/SVRP_train/uniform/100 \
     --data_size 200000 \
-    --batch_size 200 \
+    --batch_size 100 \
     --output_dir ./output \
     --log_steps 1 \
+    --save_name SCVRP-128-128-6-100-3-mean-test \
     --symmetric
 
 # python ./train/main.py \
@@ -61,4 +62,4 @@ python ./train/main.py \
 #     --output_dir ./output \
 #     --log_steps 1
 
-/usr/bin/shutdown
+# /usr/bin/shutdown
