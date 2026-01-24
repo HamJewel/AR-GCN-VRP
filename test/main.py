@@ -40,7 +40,7 @@ if args.cfg_path and os.path.exists(args.cfg_path):
         cfg = json.load(f)
     for key, value in cfg.items():
         val = getattr(args, key, None)
-        if not val and key != 'max_k':
+        if val in [None, False]:
             setattr(args, key, value)
 
 Dataset = {  # (problem, symmetric, is_lib)
@@ -92,6 +92,7 @@ for data_dir, data_size, batch_size, n_rollout in zip(args.data_dirs, args.data_
     data_loader = DataLoader(dataset, batch_size=batch_size, num_workers=args.threads)
     pred_lens, opt_lens, opt_gaps, times = tester.test(data_loader, n_rollout)
     avg_time = times.sum() / data_size
+    peak_mem = torch.cuda.max_memory_allocated() / 1024 / 1024 / 1024
     print('=======[Summary]=======')
     print(f'Node Scale:\t{dataset.n}')
     print(f'Data Size:\t{data_size}')
@@ -99,4 +100,5 @@ for data_dir, data_size, batch_size, n_rollout in zip(args.data_dirs, args.data_
     print(f'Avg Opt Len:\t{opt_lens.mean():.4f}')
     print(f'Avg Opt Gap:\t{opt_gaps.mean():.4%}')
     print(f'Avg Time:\t{avg_time:.4f}s')
+    print(f'Peak Mem:\t{peak_mem:.4f}GB')
     print('=======================')

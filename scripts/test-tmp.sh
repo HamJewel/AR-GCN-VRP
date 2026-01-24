@@ -6,7 +6,7 @@ python ./test/main.py \
     --data_sizes 1 \
     --batch_sizes 1 \
     --n_rollouts 1 \
-    --max_k 0 \
+    --max_k 100 \
     --output_dir ${MODEL_PATH} \
     --ckpt_path ${MODEL_PATH}/ckpts/steps-6000.pth \
     --cfg_path ${MODEL_PATH}/configs.json
