@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+output/test/
+data_factory/output/
+dataset_generated/
+tf-logs/
+.idea/
+CON

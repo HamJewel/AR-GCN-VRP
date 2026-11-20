@@ -1,0 +1,23 @@
+{
+    "problem": "CVRP",
+    "d_model": 128,
+    "n_encoders": 6,
+    "max_k": 50,
+    "aggregation": "mean",
+    "n_epoch": 3,
+    "learning_rate": 0.0005,
+    "baseline": "lkh",
+    "data_dir": "./dataset/SVRP_train/uniform/100",
+    "data_size": 200000,
+    "batch_size": 100,
+    "log_steps": 1,
+    "output_dir": "./output/train",
+    "save_name": "SCVRP-128-6-50-3-mean",
+    "seed": 1234,
+    "threads": 16,
+    "cuda_id": 1,
+    "symmetric": true,
+    "rewrite": false,
+    "save_dir": "./output/train/SCVRP-128-6-50-3-mean",
+    "ckpt_dir": "./output/train/SCVRP-128-6-50-3-mean/ckpts"
+}

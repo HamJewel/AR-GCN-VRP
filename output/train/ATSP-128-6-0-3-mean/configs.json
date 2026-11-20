@@ -1,0 +1,23 @@
+{
+    "problem": "TSP",
+    "d_model": 128,
+    "n_encoders": 6,
+    "max_k": 0,
+    "aggregation": "mean",
+    "n_epoch": 3,
+    "learning_rate": 0.0005,
+    "baseline": "lkh",
+    "data_dir": "./dataset/AVRP_train/tmat/100",
+    "data_size": 200000,
+    "batch_size": 100,
+    "log_steps": 1,
+    "output_dir": "./output/train",
+    "save_name": "ATSP-128-6-0-3-mean",
+    "seed": 1234,
+    "threads": 16,
+    "cuda_id": 0,
+    "symmetric": false,
+    "rewrite": false,
+    "save_dir": "./output/train/ATSP-128-6-0-3-mean",
+    "ckpt_dir": "./output/train/ATSP-128-6-0-3-mean/ckpts"
+}
