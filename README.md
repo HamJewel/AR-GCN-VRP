@@ -43,7 +43,7 @@ Labels for the test suites:
 ```bash
 DATASET_ROOT=dataset bash scripts/lkh_solver_test.sh svrp  # STSP labels, tours_TSP_lkh.npy
 DATASET_ROOT=dataset bash scripts/lkh_solver_test.sh avrp  # ATSP labels, tours_TSP_lkh.npy
-DATASET_ROOT=dataset bash scripts/hgs_solver_test.sh all   # SCVRP labels, tours_CVRP_hgs.npy and ACVRP labels, tours_CVRP.npy
+DATASET_ROOT=dataset bash scripts/hgs_solver_test.sh all   # SCVRP and ACVRP labels, tours_CVRP_hgs.npy
 ```
 
 Every script reads the same kind of overrides: `DATASET_ROOT` wherever data is read or written, `PYTHON` to pick the interpreter, and the per-script knobs documented at the top of each file (`VRP_SIZE`, `DATA_SIZE`, `SCALE`, `MAX_THREADS`, `CKPT_ROOT`, `OUTPUT_DIR`, ...). The HGS solver calls `hygese`, which aborts when the scaled distances exceed 1e5, hence `SCALE=10000` in the scripts and in the solver default.

@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # HGS labels for the synthetic test suites: SCVRP (symmetric) and ACVRP (asymmetric).
-# Writes tours_<PROBLEM>_hgs.npy / lengths_<PROBLEM>_hgs.npy for the symmetric sets and
-# tours_<PROBLEM>.npy / lengths_<PROBLEM>.npy for the asymmetric sets.
+# Writes tours_<PROBLEM>_hgs.npy / lengths_<PROBLEM>_hgs.npy next to each instance.
 # usage: bash scripts/hgs_solver_test.sh [suite]     suite = all | svrp | avrp
 set -euo pipefail
 cd "$(dirname "$0")/.."

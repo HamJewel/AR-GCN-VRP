@@ -28,7 +28,7 @@ for model in STSP-128-6-50-3-mean STSP-128-6-100-3-mean SCVRP-128-6-50-3-mean SC
     STSP*) family=SVRP_test; distributions=(uniform clustered explosion implosion); scales=(100 1000 5000 10000); baseline=lkh; libs=(STSPLIB) ;;
     SCVRP*) family=SVRP_test; distributions=(uniform clustered explosion implosion); scales=(100 1000 5000 10000); baseline=hgs; libs=(SCVRPLIB/X SCVRPLIB/XL) ;;
     ATSP*) family=AVRP_test; distributions=(tmat); scales=(50 100 500 1000); baseline=lkh; libs=(ATSPLIB) ;;
-    ACVRP*) family=AVRP_test; distributions=(tmat); scales=(50 100 500 1000); baseline=reference; libs=() ;;
+    ACVRP*) family=AVRP_test; distributions=(tmat); scales=(50 100 500 1000); baseline=hgs; libs=() ;;
   esac
   if [[ "$SUITE" != lib ]]; then
     if [[ "$SUITE" == small ]]; then distributions=("${distributions[0]}"); scales=("${scales[0]}"); fi

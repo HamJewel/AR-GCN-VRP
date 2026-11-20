@@ -9,9 +9,8 @@ Input under --data_dir:
                     vehicle capacity (CVRP only)
 
 Output written when --save_solution is given, matching the names the datasets
-load for --baseline hgs (symmetric) and --baseline reference (asymmetric):
-    symmetric   : tours_<PROBLEM>_hgs.npy, lengths_<PROBLEM>_hgs.npy
-    asymmetric  : tours_<PROBLEM>.npy,     lengths_<PROBLEM>.npy
+load for --baseline hgs:
+    tours_<PROBLEM>_hgs.npy, lengths_<PROBLEM>_hgs.npy
 
 The scale maps the unit-square instances to integers; hygese rejects distance
 matrices far above 1e5 (it aborts instead of raising), so keep
@@ -134,7 +133,7 @@ if __name__ == '__main__':
     print(f'Avg Time: {avg_time:.2f}s | Avg Length: {avg_length:.4f}')
 
     if args.save_solution:
-        suffix = '_hgs' if args.symmetric else ''
+        suffix = '_hgs'
         tour_file = f'{args.data_dir}/tours_{args.problem}{suffix}.npy'
         length_file = f'{args.data_dir}/lengths_{args.problem}{suffix}.npy'
         np.save(tour_file, tours)
